@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumière — Find Your Next Film</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===== Navigation ===== -->
+  <header class="nav">
+    <a href="#" class="brand" id="brandLink">
+      <span class="brand-mark">◐</span> Lumière
+    </a>
+    <nav class="nav-links">
+      <button class="nav-link active" data-view="browse">Browse</button>
+      <button class="nav-link" data-view="favourites">
+        Favourites <span class="fav-count" id="favCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== Hero / Featured film ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-content">
+      <p class="eyebrow">Tonight's pick</p>
+      <h1 class="hero-title" id="heroTitle"></h1>
+      <p class="hero-meta" id="heroMeta"></p>
+      <p class="hero-desc" id="heroDesc"></p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="heroDetails">View details</button>
+        <button class="btn btn-ghost" id="heroFav">♡ Add to favourites</button>
+      </div>
+    </div>
+    <div class="hero-poster" id="heroPoster"></div>
+  </section>
+
+  <!-- ===== Controls ===== -->
+  <main class="container">
+    <section class="controls" id="controls">
+      <div class="search">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="searchInput" type="search" placeholder="Search by title, director or mood…" autocomplete="off" />
+        <kbd>/</kbd>
+      </div>
+      <div class="selects">
+        <label class="select">
+          <span>Sort</span>
+          <select id="sortSelect">
+            <option value="rating">Top rated</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="title">A – Z</option>
+          </select>
+        </label>
+        <label class="select">
+          <span>Min rating</span>
+          <select id="ratingSelect">
+            <option value="0">Any</option>
+            <option value="7">7+</option>
+            <option value="8">8+</option>
+            <option value="8.5">8.5+</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <div class="chips" id="genreChips" role="tablist" aria-label="Genres"></div>
+
+    <div class="section-head">
+      <h2 id="sectionTitle">All films</h2>
+      <span class="result-count" id="resultCount"></span>
+    </div>
+
+    <section class="grid" id="movieGrid" aria-live="polite"></section>
+
+    <div class="empty" id="emptyState" hidden>
+      <div class="empty-icon">✦</div>
+      <h3 id="emptyTitle">Nothing here yet</h3>
+      <p id="emptyText">Try a different search or genre.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Lumière · a small cinema of sample data · posters are generated artwork</p>
+  </footer>
+
+  <!-- ===== Detail modal ===== -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" data-close aria-label="Close">✕</button>
+      <div class="modal-top">
+        <div class="modal-poster" id="modalPoster"></div>
+        <div class="modal-info">
+          <div class="modal-genres" id="modalGenres"></div>
+          <h2 id="modalTitle"></h2>
+          <p class="modal-meta" id="modalMeta"></p>
+          <div class="rating-bar"><div class="rating-fill" id="modalRatingFill"></div></div>
+          <p class="modal-desc" id="modalDesc"></p>
+          <p class="modal-cast" id="modalCast"></p>
+          <button class="btn btn-primary" id="modalFav"></button>
+        </div>
+      </div>
+      <div class="modal-recs">
+        <h3>If you liked this, try…</h3>
+        <div class="rec-row" id="recRow"></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="movies.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
